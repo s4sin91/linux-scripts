@@ -1,0 +1,15 @@
+ਇੱਕ ਬਣੋਨਾ ਹੈ rootFolder ਉਸਦੇ ਅੰਦਰ ਇਹ folders ਬਣੋਨੇ 
+DEBIAN/control file ਇਸਦੇ ਅੰਦਰ ਇਹ code ਲਿਖਣਾ
+----------------------------------------------------------
+Package: ਕੁਝ ਵੀ
+Version: ਕੋਈ ਵੀ version[1.01.1]etc
+Architecture: all
+Essential: no
+Prioroty: optional
+Maintainer: ਕੁਝ ਵੀ name
+Description: ਆਪਣੇ deb package ਦੀ description
+----------------------------------------------------------
+opt [ਇਹ ਵੀ folder ਹੈ]
+usr/bin/file_name & is file_name ਨੂੰ execute permission ਵੀ ਦੇਨੀ ਹੈ।
+compile ਕਰਨ ਲਈ dpkg-deb --build rootFolder
+apt install ./rootFolder.deb
