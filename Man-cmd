@@ -1,0 +1,40 @@
+ਇੱਕ info [info cp] command ਹੈ ਇਸ ਨਾਲ ਸਾਰਾ ਕੁੱਝ detail ਵਿੱਚ ਪਤਾ ਲੱਗਦਾ।pinfo ਵਿੱਚ info colorfull ਮਿਲੂਗੀ।
+
+-k: keyword [man -k mkdir //command to check total man pages of command.mkdir ਦੇ related ਸਾਰੇ man pages ਦਾ ਆਪਾ ਨੂੰ ਪਤਾ ਲੱਗ ਜਾਊਗਾ। ਤੇ ਜੋ numbers ਦਿੱਖ ਰਹੇ ਉਹ sections ਹੈ। ⚫whatis ਵੀ same work ਕਰੂਗੀ।⚫whereis ਇਹ man pages ਦੀ location ਦਸੁਗਾ by default man pages are stored in compressed format ਤੇ {system/man}extract ਕਰਕੇ show ਕਰਦਾ।
+
+___________________________________
+
+🔴sections in man
+
+1     User commands
+
+2     System calls(Kernal routines)
+
+3     Library functions
+
+4  Special files(such as device files)
+
+5     File formats(configuration files)
+
+6     games
+
+7     Protocols,File system
+
+8     System administration
+
+9     linux kernal api
+
+___________________________________
+
+/search // search forward (down) for string in the man page.
+
+N // repeat a previous search repeat forward(down)
+
+shift+N// repeat a previous search backword (up)
+
+G // start of man page
+
+shift +G //end of man page
+
+Q //quit
+
