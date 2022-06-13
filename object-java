@@ -1,0 +1,35 @@
+class ਦੇ object ਬਣਾਉਣ ਦਾ purpose ਹੁੰਦਾ ਉਸ class ਦੇ instance variable ਨੂੰ memory ਦੇਣਾ। instance ਦਾ ਮਤਲਬ ਹੀ copy ਹੁੰਦਾ। ਤੇ ਇਹ objects ਬਣ ਕੇ Heap memory area[Heap Area] ਦੇ ਵਿੱਚ store ਹੁੰਦੇ।
+
+🔵 Objects ਨੂੰ memory ਮਿਲਦੀ Heap Area ਦੇ ਵਿੱਚ।ਸਾਰੇ local variable ਨੂੰ memory stack ਵਿੱਚ FCFS ਦੇ ਹਿਸਾਬ ਨਾਲ਼ ਜਿਵੇ ਲਿਖੇ ਗਏ memory ਮਿਲਦੀ।local var doesn't have default value it must initialise before first use.
+
+----------------------------------------------------------
+
+Note this is coded in main method
+
+MyClass refVar = new MyClass();
+
+ਇਹ ਜੋ refVar ਹੈ ਇਹ Reference variable ਹੈ ਤੇ ਇਹ main method ਵਿੱਚ code ਕੀਤਾ ਗਿਆ main ਵੀ method ਹੀ ਹੈ inside method ਜੋ variable ਹੁੰਦੇ ਉਹ local ਹੁੰਦੇ ਇਸ ਲਈ References variable ਨੂੰ ਵੀ memory stack ਵਿੱਚ ਮਿਲਦੀ ਹੈ।
+
+----------------------------------------------------------
+
+🔵 Class Memory Area
+
+static data ਨੂੰ memory ਬਿਨਾ object ਬਣਾਏ ਮਿਲ ਜਾਂਦੀ ਹੈ।
+
+static data ਨੂੰ memory object ਵਿੱਚ ਨਹੀ ਮਿਲਦੀ, object ਵਿੱਚ only instance variable ਨੂੰ memory ਮਿਲਦੀ ਹੈ। static ਨੂੰ class memory area ਦੇ ਵਿੱਚ memory ਮਿਲਦੀ ਹੈ ਜੋ Heap Area ਵਿੱਚ ਹੁੰਦਾ।
+
+Class Area ਵਿੱਚ class loading time ਤੇ
+
+ਜਦੋ ਵੀ class Memory ਵਿੱਚ load ਹੁੰਦੀ static data [DM] ਨੂੰ ਇੱਕ ਵਾਰ memory ਮਿਲ ਜਾਂਦੀ ਹੈ ਉਹ ਇੱਕ ਵਾਰ ਉੱਥੇ ਜਾਕੇ store ਹੋ ਜਾਂਦੇ ਤੇ ਜਿੰਨੇ objects ਬਣਨਗੇ ਉਹ ਉਸ static DM access ਕਰ ਲੈਣਗੇ।non-static/instance DM ਦੀ multiple copy ਬਣਦੀ ਜਿੰਨੇ objects ਬਣਦੇ।
+
+🔵
+
+🔵
+
+this is used to identify the instance var
+
+this keyword cannot be used inside static context
+
+this is implicitly available in every non-static method & constructor
+
+this ਹੁੰਦਾ public final this
