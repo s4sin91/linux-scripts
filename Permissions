@@ -1,0 +1,42 @@
+🔴1). interpreting linux file system permissions 
+
+🔵Linux File system permissions
+
+File permissions control access to files. default permission ਨੂੰ initial permission ਵੀ ਕਹਿੰਦੇ।
+
+FileSystem: ਆਪਾ ਕੌਈ file create ਕਰਦੇ, cut,copy, paste ਕਰਦੇ ਕੋਈ file ਤਾਂ ਇਹ ਸਭ filesystem ਦੀ ਵਜ੍ਹਾ ਨਾਲ ਹੁੰਦਾ। filesystem ਮਤਲਬ ਜਿੱਥੇ ਆਪਣਾ data store ਹੈ।
+
+Files have 3 categories of user which they apply.
+
+(i) user: The file is owned by a user, normally the one who created the file.
+
+(ii) group: The file is also owned by a single  group, usually the primary group of the user who created the file, but this can be changed.
+
+(iii) other: Different permission can be set for the owning user, the owning group, and for all other user on the system that are not the user or a member of the owning group. other ਮਤਲਬ ਨਾਂ ਤਾਂ ਉਹ group ਦਾ part ਹੈ, ਨਾ ਹੀ ਉਸਦਾ owner ਹੈ।like i create file ਤੇ ਮੈ ਉਸਦਾ owner ਬਣ ਗਿਆ, ਤੇ ਉਹੀ particular ਜੋ owner ਹੁੰਦਾ ਉਸ ਨਾਮ ਦਾ group ਬਣ ਜਾਂਦਾ ਤੇ ਉਹ ਉਸਦਾ member primary group ਲੈ ਲੈਂਦਾ automatically। ਇਸਦੇ ਇਲਾਵਾ ਹੋਰ ਸਾਰੇ others ਦੀ category ਵਿੱਚ count ਹੁੰਦੇ।
+
+The most specific permissions take precedence.
+
+Users permission override group permission , which override others permission.
+
+🔵Effect of permissions on files & directory.
+
+r(read)
+
+Files: contents of file can be read.
+
+Folder: contents of the directory(the file name) can be listed.
+
+w(write)
+
+Files: contents of file can be changed.
+
+Folder: any files in directory can be created or deleted.
+
+e(execute)
+
+Files: files can be executed as commands.
+
+Folder: contents of directory can be accessed (you can change into the directory[cd], read info about its files, and access it's files if the file's permission allow it.)
+
+⚫ command: [ls -l] is used to show more detailed info about file permissions and ownership. ਇੱਥੇ [. ਤੇ + ਦਾ ਨਿਸ਼ਾਨ ਆ ਜਾਂਦਾ। dot ਮਤਲਬ ਵੀ ਇੱਥੇ user label permission & plus ਦਾ ਮਤਲਬ ਵੀ ਇੱਥੇ ACL(Access control list) permission ਹੈ। advance permission ਹੁੰਦੀਆ sgid,suid, sticky bit.
+
