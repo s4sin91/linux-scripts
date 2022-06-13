@@ -1,0 +1,103 @@
+vim has different modes:
+
+*Insert mode[ਕੌਈ ਵੀ text insert/edit ਕਰਨ ਲਈ ਇਸ mode ਵਿੱਚ ਜਾਨਾ ਪੈਂਦਾ use i to enter in this mode]
+
+*Command mode[text copy,paste,ਤੇ ਕਦੇ ਕਦੇ visualisation mode ਵੀ use ਕਰ ਲੈਂਦੇ use esc button to enter in this mode]
+
+*Extended comnand mode[ save   ਜਾ quit ਕਰਨ ਲਈ use esc button+ : to enter this mode]
+
+*Visual mode
+
+by default ਆਪਾ command mode ਚ ਹੁੰਦੇ। we can go in insert mode by i।
+
+commands---
+
+:q //quit
+
+:! //forecfully
+
+:s //save
+
+:c //cut
+
+:p //paste
+
+:d //delete
+
+:u //undo
+
+:wqa//save and quit all tabs
+
+://append after cursor
+
+cntrl + t //redo
+
+/search // ਏਦੇ ਨਾਲ search ਹੁੰਦਾ।
+
+:
+
+:
+
+The general pattern for search and replace is:
+
+:s/search/replace/
+
+Replaces the first occurrence of 'search' with 'replace' for current line
+
+:s/search/replace/g
+
+e: //reach end of work
+
+a://append at the end of line
+
+a;//append after the cursor
+
+i:// insert before the cursor
+
+I://
+
+show number line=set number or se nu.
+
+remove number line=set number or se nonu.
+
+go to specific line type line number
+
+gg to go to start of file
+
+shift+g or G to go to end of file
+
+0 to start of line
+
+$ to end of line
+
+[num] cc //cut
+
+[num] dd //delete
+
+[num] yy //copy
+
+x: Deletes the character at the current cursor position
+
+dd: Deletes the line at the current cursor position
+
+dw:
+Deletes the word at the current cursor position
+
+d$: Deletes to the end of the line from the current cursor position
+
+J: Deletes the line break at the end of the line at the current cursor position 
+
+(joins lines)
+
+u: Undoes the previous edit command
+
+a: Appends data after the current cursor position
+
+A: Appends data to the end of the line at the current cursor position
+
+r char: Replaces a single character at the current cursor position with char
+
+R text:
+ Overwrites the data at the current cursor position with text, until you press 
+
+Escape
