@@ -1,0 +1,231 @@
+___________________________________
+
+🔴Managing local user & groups🔴
+
+___________________________________
+
+🔵 Topics
+
+----------------------------------------------------------
+
+1)Describing user & group concepts
+
+2) Gaining super user access
+
+3) Managing local user accounts
+
+4) Managing local group accounts
+
+5) Managing user passwords
+
+----------------------------------------------------------
+
+⚫Q).what is user,group & permission?
+
+Ans). System use ਕਰਨ ਲਈ (system ਵਿੱਚ ਕੌਈ ਵੀ ਕੰਮ ਕਰਨ ਲਈ) we need to make account in system called user account.account create ਕਰਨ ਨਾਲ we get username & password, ਤੇ ਇਹਨਾਂ ਨੂੰ credentials ਕਹਿੰਦੇ।we need credentials to use any system. without credentials ਆਪਾ ਕਿਸੇ ਵੀ system ਵਿੱਚ login ਨਹੀ ਕਰ ਸਕਦੇ।any individual who is accessing the system is called user. ਹਰ user ਦੀ boundary/limitations ਹੁੰਦੀ ਜਿਸਦੇ ਵਿੱਚ ਰਹਿਕੇ ਉਸਨੂੰ ਕੰਮ ਕਰਨਾ ਹੁੰਦਾ।
+
+group: Group is a collection of users.for ex 10 users ਹੈ same permission ਹੈ ਉਹਨਾਂ ਦੀ ਤਾਂ ਆਪਾ ਉਹਨਾਂ ਨੂੰ ਇੱਕ group ਬਣਾ ਕੇ ਉਹਨਾਂ ਨੂੰ group ਵਿੱਚ join ਕਰ ਦੇਵੇਗੇ ਤੇ permission assign ਕਰ ਦੇਵਾਂਗੇ।
+
+Permission: ਕੌਈ ਵੀ ਚੀਜ਼ ਚਾਹੇ ਉਹ ਕੌਈ file, directory,command,software ਹੈ ਉਸਨੂੰ access ਕਰਨ ਲਈ we need permission.
+
+POINTS:
+
+*A user account is used to provide security boundaries b/w different people & programs that can run commands.
+
+*Users have user names to identify them to human users and make them easier to work with. 
+
+*The system distinguishes user accounts by the UIN(unique identification number) assigned to them, the user id or UID
+
+*Every process (running program) on the system runs as a particular user.
+
+*Every file has a particular user as it's owner.
+
+----------------------------------------------------------
+
+⚫Q).types of users?
+
+Ans).3type ਹੁੰਦੇ user ਦੇ।
+
+(i)superuser (root)
+
+(ii) system users(ਜਦੋ ਵੀ program install ਕਰਦੇ ਬਹੁਤ ਸਾਰੇ system account ਪਹਿਲਾ ਤੋ ਬਣੇ ਹੁੰਦੇ। ਕੋਈ ਵੀ program install ਕਰਦੇ ਉਦੋਂ create ਹੋ ਜਾਂਦਾ)
+
+(iii) regular users(when we create user ਤਾਂ regular user ਬਣਦਾ)
+
+(i) superuser account: the superuser account is for administration of the system.
+
+the name of the superuser is root and the account has UID0.
+
+the superuser has full access to the system. 
+
+(ii) system user account: system ਵਿੱਚ ਬਹੁਤ ਸਾਰੀਆਂ ਐਵੇਂ ਦੀਆ ਚੀਜ਼ਾਂ ਹੁੰਦੀਆਂ ਜਿੰਨਾਂ ਨੂੰ run ਕਰਨ ਲਈ service account ਦੀ ਲੋੜ ਪੈਂਦੀ ਹੈ।the system has system user account which are used by process that provide supporting services.these processes or deamons usually do not need to run as the superuser(ਹਰ proccess ਨੂੰ run ਕਰਨ ਲਈ).users do not interactively login using a system user account(ਕੁੱਝ ਚੀਜ਼ਾਂ ਬਿਨਾਂ root user ਦੀ previlege ਦੇ ਚੱਲ ਜਾਂਦੀਆਂ ਤੇ ਇਹਨਾਂ ਨੂੰ system user account ਕਹਿੰਦੇ ਤੇ ਇਸ ਨਾਲ ਆਪਣਾ ਕੰਮ ਚੱਲ ਜਾਂਦਾ)
+
+(iii) regular user: most users have regular user accounts which they used for day-to-day work.like system users, regular users have limited access to the system.the id command to show information about the currently logged in user.
+
+----------------------------------------------------------
+
+⚫Q).User configuration file?
+
+Ans).each line in the /etc/passwd file contains information about one user. it is divided up into seven colon-seprated fields.
+
+(i) username for this user(user01)
+
+(ii)the users password used to be stored here in encrypted format.that has been moved to the /etc/shadow file.this field should always be x(x ਦਾ ਮਤਲਬ ਇਹ link ਹੈ /etc/shadow ਨਾਲ , ਇਸਦੀ info update ਹੁੰਦੀ shadow file ਚ).
+
+(iii)the uid number for this user account.
+
+(iv)the gid number for this user account's primary group.
+
+(v)the real name/display name/comment name for this user (User One).
+
+(vi)the home dir for this user /home/user01.
+
+(vii)/bin/bash
+
+ਇਹ entries ਜੋ default ਹੈ, ਇਹ /etc/default/useradd, we can access it by useradd -D also.
+
+/etc/shells: list of all shells.
+
+/etc/skel: ਇਹ ਉਹ dir ਹੈ ਜਿੱਥੇ default files ਹੁੰਦੀਆ like- bashrc ਜਾ ਕੋਈ ਹੋਰ files for new user ਦੀ home dir ਵਿੱਚ copy ਹੋਣਗੀਆਂ।files here are hidden.
+
+----------------------------------------------------------
+
+⚫Q).what is group?
+
+Ans).a group is a collection of users that need to share access to files and other system resources.[groupadd] command ਦਾ use ਹੁੰਦਾ ਤੋ create group.
+
+Groups can be used to grant access to files to a set of users instead of just a single user.
+
+The groups have group names to make them easier to work with.
+
+Internally system distinguishes groups by the unique identification number assigned to them,the group id or GID.
+
+By default, system use the etc/group file to store info about local groups ().
+
+Each line in the etc/group file contains information about one group.
+
+Each group entry is divided into 4 colon-seprated fields.
+
+(i) group name for this group.
+
+(ii)obsolete group password field, this filed should always be x.etc/gshadow file used to store password.
+
+(iii)the GID number for this group.
+
+(iv)a list of user who are member for this group as secondary/supplementary group(user01,user02,user03).
+
+Primary and supplementary/secondary group.
+
+ਆਪਾ secondary group ਬਣਾਉਣੇ ਤੇ ਜਦੋ ਆਪਾ user create ਕਰਦੇ ਉਸ time primary group automatically create ਹੋ ਜਾਂਦਾ.
+
+----------------------------------------------------------
+
+⚫Q). interactive & non interactive shell?
+
+Ans). interactive shell ਦਾ ਮਤਲਬ ਜਿਸ ਦਾ use ਕਰਕੇ ਆਪਾ system ਵਿੱਚ interaction ਕਰਦੇ commands ਦਾ use ਕਰਦੇ। /bin/bash is interactive
+
+non-interactive shell ਦਾ ਮਤਲਬ ਆਪਾ interaction, ਤੇ commands ਨਹੀਂ run ਕਰ ਸਕਦੇ /sbin/nologin is non-interactive shell. ਇਹ service account ਵਿੱਚ use ਕਰਦੇ ਤੇ ਇਹ system ਵਿੱਚ login ਨਹੀ ਹੁੰਦੇ।
+
+----------------------------------------------------------
+
+⚫Q). Permission table in linux & permission effects
+
+r: if ਨਹੀ ਦਿੱਤੀ to dir ਤਾਂ we can't list it's content.use ls।
+
+w: if ਨਹੀ ਦਿੱਤੀ to dir ਤਾਂ we can't create file/dir inside it.
+
+e: if ਨਹੀ ਦਿੱਤੀ to dir ਤਾਂ we can't go inside it.
+
+0	    ---	       No permission1	    --x	       Execute
+
+2     -w-	       Write
+
+3	    -wx	      Write and execute
+
+4	    r--	        Read
+
+5	    r-x	                   Read and execute
+
+6	    rw-	                 Read and write
+
+7	    rwx	     Read, write, and execute
+
+----------------------------------------------------------
+
+⚫Q). ls command output details
+
+(i)
+
+(ii)
+
+(iii) user owner(primary group)
+
+(iv) group owner (secondary/ supplementary group
+
+----------------------------------------------------------
+
+🔴⚫Q).Default/initial/effective & special permissions?
+
+Default or initial permission:  if root ਕੌਈ file create ਕਰੇਗਾ ਤਾਂ ਅੱਡ permission, folder create ਕਰੇਗਾ ਤਾਂ ਅੱਡ permission and if regular user file create ਕਰੇਗਾ ਤਾਂ ਅੱਡ permission, folder create ਕਰੇਗਾ ਤਾਂ ਅੱਡ permission. ਇਹ initial permission umask ਤੇ depend ਕਰਦੀ ਹੈ।if we change default value of umask, initial/default permissions will change। root & regular user ਦਾ umask diffrent ਹੁੰਦਾ।
+
+root ਦਾ 0022 regular user ਦਾ 0002.
+
+( ਇਹ divide ਹੁੰਦਾ first 0 special permissions ਹੁੰਦੀ,2nd 0 user, 3rd 0 group, 4th other)।The system default permission values are 777 ( rwx-rwx-rwx ) for folders and 666 ( rw-rw-rw- ) for files.ਆਪ maximum permission ਦੇ ਸਕਦੇ 777(r+w+x)।folder ਦੇ ਵਿੱਚ 7(r+w+e) ਕਿਉ ਦਿੰਦੇ bcoz execute allows you to enter the directory (i.e., cd into it), and to access any of its files. file ਤੇ 666(r+w=6)। ਤੇ initial ਇਹਨਾਂ ਚੋ for ex in folder ex 777-022= 755(r,e,e)ਹੋਜੂ। for file maximum permission ਹੁੰਦੀ 666{execute ਵੀ ਹੁੰਦੀ,but by default security reasons ਕਰਕੇ execute permission ਨਹੀ ਦਿੰਦੇ bcoz we dont want file to execute }(r+w) ਤੇ intial ਹੋਊਗੀ 666-022=644(r+w,r,r)ਹੋਜੂ। ਇਹ ਦੋ example root ਲਈ ਸੀ ਐਵੇ ਹੀ regular user ਲਈ ਹੋਊਗੀ umask-permission।
+
+change umask:- ਇਹ ਸਾਰੀ info /etc/bashrc file ਵਿੱਚ ਹੁੰਦੀ for change it to all users but if we want to change for it for specific user then we can do it by .bashrc file inside home dir of specific user
+
+Special/advance permissions: ਇਹ 3 types ਦੀ ਹੁੰਦੀਆ, ਤੇ ਇਹਨਾਂ ਨੂੰ ਆਪਾ ਇਹਨਾਂ ਤੇ ਲਾਉਂਦੇ/ਨਾਲ use ਕਰਦੇ।
+
+##SUID & SGID ਵਿੱਚ s ਛੋਟਾ ਤਾਂ execute permission ਵੀ ਹੈ if S is ਵੱਡਾ ਤਾਂ ਨਹੀ ਹੈ।
+
+(i)SUID(super user identification)= user। ਇਹ ਕਿਸੇ file ਤੇ ਲਗਾਉਣ ਨਾਲ਼ ਉਹ file ਐਵੇ execute ਹੁੰਦੀ ਜਿਵੇਂ ਉਸਦੇ owner ਨੇ ਉਸਨੂੰ execute ਕੀਤਾ ਹੋਵੇ।(4)
+
+[chmod u+s fileName#set SUID]
+
+[chmod 4766 fileName#set SUID]
+
+[chmod u-s fileName#disable SUID]
+
+(ii)SGID(super group identification)=  group। ਕਿਸੇ directory ਤੇ ਲਗਾਉਣ ਨਾਲ ਉਸ directory ਦੇ ਅੰਦਰ ਦੀ files ਹੈ ਉਹਨਾਂ ਦਾ ਜੋ group ਹੈ/owner ਹੈ ਉਹ ਉਹੀ ਹੋ ਜਾਂਦਾ ਜੋ ਉਸ particular directory ਦਾ group ਹੈ।(2)
+
+[chmod g+s dirName#set SGID]
+
+[chmod 2766 dirName#set SGID]
+
+[chmod g-s dirName#disable SGID]
+
+(iii)sticky bit= others।ਕਿਸੇ directory ਤੇ sticky bit ਲਗਾਉਣ ਨਾਲ ਉਸ directory ਵਿੱਚ user ਸਿਰਫ ਆਪਣੀ file delete ਕਰ ਪਾਉਂਦਾ ਕਿਸੇ ਦੂਜੇ ਦੀ ਨਹੀਂ। we use it as protective layer.(1)
+
+[chmod +t dirName#set sticky]
+
+[chmod 1766 dirName#set sticky]
+
+[chmod -t dirName#disable sticky]
+
+⚫ACL(Access control list) ifexplicitly/exclusively ਕਿਸੇ particular user [user1] ਨੂੰ r+w ਤੇ ਦੂਜੇ user [user2] ਨੂੰ r on same file ਨਾਂ ਹੀ ਇਸਨੂੰ group ਵਿੱਚ add ਕਰ ਸਕਦੇ ਨਾਂ ਹੀ ਉਸਨੂੰ other user bcoz ਫਿਰ ਸਾਰਿਆਂ ਨੂੰ access ਮਿੱਲ ਜਾਊਗਾ, ਤਾਂ in this case we use ACL.with ACL we can define specific permissions for specific user. getfacl ਨਾਲ ਆਪਾ check ਕਰ ਸਕਦੇ ACL, ਤੇ ਇਸਦੇ output ਵਿੱਚ mask ਆ ਰਿਹਾ ਹੋਊਗਾ।mask decide ਕਰਦਾ ਕਿਸੇ user ਦੀ effective permission ਨੂੰ ਜੋ user ACL ਵਿੱਚ ਹੈ। we can change mask with [ setfacl -m u:linux:4 file.txt ]
+
+Maskconcept detail:- whenever we execute setfacl ਤਾਂ ਹਰ ਵਾਰੀ ਇਹ check ਕਰਦਾ ਵੀ maximum value ਕਿੰਨੀ ਹੈ ਜੋ ਆਪਾ user ਨੂੰ ਦਿੱਤੀ ਹੈ ਤੇ ਇਸ command ਵਿੱਚ ਕਿੰਨੀ ਦਿੱਤੀ ਹੈ। for ex ਪਹਿਲੀ comnand ਵਿੱਚ read ਦਾ access ਦਿੱਤਾ, ਅਗਲੀ comnand ਵਿੱਚ read, write ਦਾ access ਦਿੱਤਾ।mask ਦੀ value ਪਹਿਲਾ ਸੀ read ਤੇ ਅਗਲੀ ਵਾਰ ਜਿਵੇਂ ਹੀ read,write ਦਾ access ਦਿੱਤਾ ਤਾਂ mask ਦੀ value ਹੋ ਗਈ read,write।mask ਇਹ check ਕਰਦਾ ਰਹਿੰਦਾ ਵੀ maximum permission ਕਿਸ level ਤੱਕ ਗਈ ਹੈ।if we use setfacl command again ਇਸ ਵਿੱਚ ਆਪਾ read,write, execute ਦਾ access ਦੇ ਦਿੱਤਾ
+
+ ਕਿਸੇ ਨੂੰ ਤਾਂ mask ਦੀ value ਹੋ ਜਾਊਗੀ read,write, execute। if we want to add user in ACL without changing/modify mask ਤਾਂ we can use flag [--no-mask]
+
+___________________________________
+
+⚫ System & user profile files
+
+(System profile file) 
+
+ important files:
+
+(i) /etc/inputrc: 
+
+(ii) /etc/bashrc:
+
+(iii) /etc/profile:ਇਹ ਸਾਰੇ system ਲਈ same ਹੁੰਦੀ ਮਤਲਬ settings, var,allise,functions, environment settings globally ਸਭ user ਲਈ ਕੰਮ ਕਰਦੀ ਹੈ। For ex: /etc/profile ਦੇ ਵਿੱਚ $PATH var define/set ਹੁੰਦਾ।
+
+(User profile file) different user ਲਈ ਅੱਡ ਅੱਡ ਹੁੰਦੀ।
+
+important files:
+
+(i). profile: /etc/profile globally ਕੰਮ ਕਰ ਰਹੀ ਹੈ ਤੇ ਇਹ user ਦੇ ਹਿਸਾਬ ਲਈ ਕੰਮ ਕਰ ਰਹੀ ਹੈ। important ਕੰਮ ਇਹ ਨੇ ਇਸ file ਦੇ .bashrc ਨੂੰ source ਕਰਨਾ ਤੇ, $HOME ਨੂੰ path var ਤੇ add ਕਰਨਾ।it execute only one time when we login. 
+
+___________________________________
