@@ -1,0 +1,105 @@
+___________________________________
+
+🔴 Booting process of RHEL8
+
+Linux ਦੇ ਬਹੁਤ flavours ਹੈ ਤੇ ਕਈ ਵਾਰ diffrent flavours ਕਰਕੇ booting process ਥੋੜਾ change ਵੀ ਹੋ ਸਕਦੀ ਹੈ but in this session we only discuss RHEL8 booting process.
+
+⚫ BIOS is firmware ਮਤਲਬ combination of hardware & software
+
+⚫ Q).what is booting?
+
+Ans). The process of copying the files of OS on RAM from HardDisk . ਇਹ files [copy ਹੋ ਰਹੀਆਂ] /boot partition{/boot directory} ਵਿੱਚ store ਹੁੰਦੀਆ। ਇਹ files sequence ਵਿੱਚ load ਹੁੰਦਿਆਂ in RAM and then allow us to use the system  after loading all the services and OS components is called booting process.when ਆਪਾ press ਕਰਦੇ power button ਨੂੰ electric current ਸਾਰੇ components ਵਿਚ ਜਾਂਦਾ।current Motherboard ਵਿੱਚ BIOS [Basic Input Output System]  ਨਾਮ ਦੀ chip ਵਿੱਚ ਜਾਂਦਾ। BIOS POST[Power On Self Test] operation ਨੂੰ execute ਕਰਦਾ।BIOS ਵਿੱਚ ਇੱਕ program ਹੁੰਦਾ ਜਿਹੜਾ firmware ਹੁੰਦਾ, BIOS as a combination ਕੰਮ ਕਰਦਾ Hardware & Software ਦਾ।BIOS ਵਿੱਚ POST operation ਲਈ ਇੱਕ program ਹੁੰਦਾ।BIOS chip ਇਹ check ਕਰਦੀ ਵੀ ਸਾਰੇ ਸਾਰੇ components ਜੋ ਆਪਣੇ machine ਨਾਲ attached ਹੈ ਉਹ proper working condition ਵਿੱਚ ਹੈ ਜਾਂ ਨਹੀਂ। ਇਸ check ਲਈ BIOS POST operation ਨੂੰ execute ਕਰਦੀ ਹੈ।if all the components are in working condition(BIOS POST run ਕਰਦਾ ਤੇ POST signal send ਕਰਦਾ BIOS ਨੂੰ all components are in working condition or not if not ਤਾਂ ਆਪਣੀ machine boot ਹੀ ਨਹੀਂ ਹੋਣੀ) then (BIOS) ਇਹ ਆਵਦਾ control MBR [Master Boot Record] ਨੂੰ ਦੇ ਦਿੰਦੀ ਹੈ।if problem ਹੈ ਤਾਂ multiple beep sounds ਹੋਣ ਲੱਗ ਜਾਂਦੇ, beep ਦੇ different ports ਹੁੰਦੇ ਜਿਸ ਨਾਲ ਪਤਾ ਲੱਗ ਜਾਂਦਾ ਕੀ ਕੀ problem ਹੈ।
+
+More about BIOS:
+
+it is chip present in Motherboard IC.
+
+BIOS is read only memory.BIOS is a combination of both Hardware and software.ਇਸ ਵਿੱਚ program ਹੁੰਦਾ ਜੋ as a firmware ਕੰਮ ਕਰਦਾ। ਇੱਥੇ ਆਪਾ limited changes ਕਰ ਸਕਦੇ in BIOS. CMOS ਵਿੱਚ BIOS ਦੀ settings store ਹੁੰਦੀ ਹੈ।CMOS is powered by a small battery. today UEFI is used and it is advance version of BIOS. UEFI ਜਿਆਦਾ flexibility provide ਕਰਦਾ।in UEFI ਆਪਾ ਜਿਆਦਾ changes ਕਰ ਸਕਦੇ, easily manage settings & ਇੱਥੇ mouse ਦਾ ਵੀ support ਮਿਲਦਾ।
+
+⚫ Q). MBR?
+
+Ans).BIOS POST operation execute ਹੋਣ ਤੋ ਬਾਅਦ MBR ਨੂੰ search ਕਰਦਾ ਤੇ MBR ਨੂੰ control ਦੇ ਦਿੰਦਾ। ਇੱਥੇ BIOS ਵਿੱਚ ਆਪਾ select ਕਰ ਸੱਕਦੇ booting device (select boot device in:HDD,LAN,CD/DVD,USB, HBA card)।ਜਿੱਥੇ ਵੀ ਆਪਣੀ booting device ਹੋਊਗੀ (USB,CD/DVD)ਉੱਥੇ ਉਸ ਦੇ ਵਿੱਚ BIOS MBR ਨੂੰ search ਕਰਦਾ।MBR ਮਿਲਣ ਤੋਂ ਬਾਅਦ BIOS MRB ਨੂੰ control ਦੇ ਦੇਊਗਾ।MBR ਆਪਣੀ booting device ਦੇ first sector ਵਿੱਚ store ਹੁੰਦਾ & ਇਸਦੀ (MBR ਦੀ) size 512 bytes ਹੁੰਦੀ ਹੈ। ਇਹ 512bytes ਵੀ divided ਹੁੰਦੇ ਹੈ।
+
+----------------------------------------------------------
+
+440bytes(code):code ਦਾ ਮਤਲਬ ਇਹ sector information ਰੱਖਦਾ bootloader ਦੀ। ਇੱਥੇ primary bootloader ਦੀ information ਹੁੰਦੀ ਹੈ it is not main bootloader. It only keeps(ਇਸਦੇ ਅੰਦਰ) the sector information regarding the main bootloader. Main bootloader is GRUB2, /boot directory ਅੰਦਰ grub2 ਨਾਂਮ ਦਾ bootloader(aslo known as main bootloader) ਹੈ ਉਸਦੀ sector information ਹੈ ਉਹ ਇੱਥੇ store ਹੁੰਦੀ ਹੈ। ਤੇ ਇਹ point ਕਰਦਾ grub2 / main bootloader ਨੂੰ।
+
+4bytes (Disk signature):
+
+2bytes (Nuts): null ਲਈ ਹੁੰਦੀ ਹੈ।
+
+64bytes (Partition table): ਇਹ 16bytes ਹਰ primary partition ਲਈ reserved ਹੁੰਦੀ ਹੈ ਦੀ  total 64bytes. ਇਸ ਲਈ total 4 ਹੀ primary partition support ਹੁੰਦੇ ਹੈ ਕਿਸੇ ਵੀ disk ਵਿੱਚ ਜੈ ਆਪਾ MBR disk use ਕਰਦੇ ਜਾ ਫਿਰ simple BIOS use ਕਰ ਰਹੇ। Why 4 bcoz 16bytes ਹਰ primary partition ਲਈ reserved ਹੁੰਦੇ ਹੈ in MBR(total is 64bytes)।
+
+2bytes(MBR signature): ਇਹ MBR signature ਲਈ reserved ਹੁੰਦੇ ਹੈ।
+
+ਬਾਕੀ sectors ਵਿੱਚ ਆਪਾ data ਜਾ booting files ਕੁਝ ਵੀ ਆਪਾ ਰੱਖ ਸਕਦੇ in our disk.
+
+----------------------------------------------------------
+
+ ਇਹ MBR point ਕਰਦਾ grub2 / main bootloader ਨੂੰ।
+
+⚫ Q). GRUB2?
+
+Ans). GRUB2 [GRAND UNIFIED BOOTLOADER VERSION 2] ਇਸਦਾ ਕੰਮ ਹੈ kernel ਨੂੰ memory/RAM ਵਿੱਚ load ਕਰੇ। GRUB2 ਹੀ ਆਪਾ ਨੂੰ GRUB menu provide ਕਰਦਾ ਜਿੱਥੇ ਆਪਾ kernel ਨੂੰ select ਕਰ ਸਕਦੇ, ਜਿਸਤੋਂ ਆਪਾ ਆਪਣੀ machine ਨੂੰ boot ਕਰਨਾ ਚਾਹੁੰਦੇ।for example: ਉੱਥੇ normal and rescue kernel ਦੀ lines show ਹੁੰਦੀਆ, if we patch machine there are multiple kernel then ਓਥੇ multiple lines ਵੀ show ਹੋਣਗੀਆਂ। ਇਹ GRUB menu ਹੁੰਦੀ ਹੈ। GRUB menu ਦਾ ਮਤਲਬ ਜਿੰਨੇ ਵੀ kernel ਉਥੇ ਹੈ ਉਹ show ਹੁੰਦੇ ਓਥੇ & we can choose there one, to choose 10-15 seconds ਹੁੰਦੇ।
+
+(i) GRUB2 loads its configuration files from /boot/grub2/grub.conf file. ਇਹ main file ਹੈ।
+
+(i) then it provides you the option to select the kernel to boot up your machine in form of boot menu.
+
+(iii) then it loads the selected/default VMLinuz kernel image from /boot/vmlinuz-******.
+
+(iii) and then it extracts the content of initramfs image from /boot/initramfs-**.img load ਕਰਦਾ in RAM.
+
+To initialise Hardware we need ਬਹੁਤ ਸਾਰੇ drivers, modules ਦੀ ਲੋੜ ਪੈਂਦੀ ਹੈ।GRUB2 select & loads kernel in memory. Now kernel/Vmlinuz needs drivers, it (VMLinuz) find drivers in initramfs for all hardware initilization. ਅਜੇ ਤੱਕ Harddisk initialise ਨਹੀ ਹੋਈ ਹੈ ਪੂਰੀ ਤਰ੍ਹਾਂ ਮਤਲਬ ਹੁਣ GRUB2 load ਹੋਇਆ ਬਾਕੀ ਜੋ hardware ਹੈ ਉਸਨੂੰ ਵੀ initialise ਕਰਨਾ ਹੈ। ਉਸ hardware ਨੂੰ initialise ਕਰਨ ਲਈ we need drivers & modules. ਉਹਨਾਂ ਨੂੰ initramfs ਦੀ help ਨਾਲ RAM ਵਿੱਚ load ਕਰ ਦਿੱਤਾ ਜਾਂਦਾ ਹੈ।now kernel trying to mount root filesystem & trying to start systemd process but it requires modules/drivers to do this process, ਜੋ ਇਸਨੂੰ initramfs img ਜੋ extract ਹੋਕੇ RAM ਵਿੱਚ load ਹੋ ਗਈ ਹੈ ਉਸਦੇ ਵਿੱਚ ਮਿੱਲ ਜਾਂਦੇ। initramfs ਵਿੱਚ modules & drivers ਹੁੰਦੇ ਹੈ ਜਿਸ ਨਾਲ hardware initialise ਹੋ ਜਾਂਦਾ।
+
+ Hardware initilization: ਹੁਣ kernel ਉਹ ਸਾਰੇ hardware initialise ਕਰ ਦਿਉ ਜਿਸਦਾ driver & module initramfs ਵਿੱਚ ਹੋਊਗਾ। 
+
+init process: now kernel will start init process (/sbin/init ਨਾਮ ਦੀ binary file execute ਕਰੂਗਾ) why init bcoz init ਦਾ ਹੀ version ਹੈ systemd ਹੈ(RHEL6 ਤੱਕ init use ਕਰਦੇ ਸੀ RHEL7-8 ਵਿੱਚ systemd use ਹੁੰਦੀ) systemd ਲਈ ਵੀ system /sbin/init binary ਨੂੰ execute ਕਰਦਾ।
+
+(i) init is first process of linux and it is called parent of all the process in linux.it start at the booting of the system & keep running until machine is running & stop at last ਪਹਿਲਾਂ ਇਸਦੇ child kill ਹੋਣਗੇ ਫਿਰ ਇਹ (parent) kill ਹੋਊਗਾ.
+
+(ii) kernel executes /sbin/init from the initramfs as the first process of having process id 1(PID=1)
+
+(iii)on RHEL8, init has been replaced with system & /sbin/init is a softlink to systemd.you can see it by[ ls -l /sbin/init] ਇਹ ਏਸੇ ਦਾ shortcut ਹੈ ਇਸਨੂੰ execute ਕਰਨ ਦਾ ਕੰਮ ਕਰਦਾ।
+
+it control the final process of booting & prepare the system for use how ਪਹਿਲਾ ਇਹ process start ਹੋਊਗੀ ਉਸਤੋ ਬਾਅਦ ਇਹ ਬਾਕੀ ਦੂਜੀ services start ਕਰੂਗੀ ਤੇ ਬਾਕੀ OS components ਹੈ ਉਹਨਾਂ ਨੂੰ memory ਵਿੱਚ load ਕਰੂਗੀ।
+
+initrd.target: ਜਦੋ systemd/init start ਹੋ ਗਈ ਤਾਂ ਉਸਤੋ ਬਾਅਦ ਇਹ(with the help of initramfs Systemd executes all units for the initrd.target ) execute ਕਰੇਗੀ initrd.target 
+
+(ii) On RHEL 8, runlevels are called as the targets there are total 7targets (runlevels)present in Linux.
+
+(iii) this includes the mounting of the root filesystem on the disk at  
+
+/sysroot directory ਤੇ temporary basis ਲਈ mount ਹੋਊਗਾ।
+
+switching root filesystem: ਹੁਣ ਇਹ finally switch ਹੋ ਜਾਊਗਾ in root filesystem. Kernel root filesystem switched from initramfs root (sysroot) to system root filesystem ਉਸਤੋ ਬਾਅਦ ਇਹ sysroot directory ਤੋਂ root directory ਤੇ mount ਹੋ ਜਾਊਗਾ permanently.(OS ਵਿੱਚ changes ਕਰਨ ਲਈ sysroot ਦਾ use ਹੁੰਦਾ,if we want to reset root password ਤਾਂ ਉਸਨੂੰ ਪਹਿਲਾ sysroot ਤੇ mount ਕਰਕੇ changes ਕਰਦੇ) ਪਹਿਲਾ ਉਹ temprary bases ਤੇ sysroot directory ਤੇ mount ਹੋ ਕੇ ਉੱਥੋਂ switch ਹੁੰਦਾ in root directory permanent mount ਹੋਣ ਲਈ।
+
+Systemd looks for default.target: ਇਸਤੋਂ ਬਾਅਦ systemd ਪਤਾ ਕਰਦਾ ਵੀ ਆਪਾ default target ਕਿਹੜਾ set ਕੀਤਾ ਹੈ। ਆਪਾ ਅੱਡ ਅੱਡ targets(runlevels) use ਕਰਦੇ ਤੇ ਇਹ depend ਕਰਦਾ ਵੀ ਆਪਾ ਆਪਣੀ machine ਕਿਸ target (runlevels) ਤੇ boot ਕਰਨਾ ਚਾਹੁੰਦੇ ਤੇ default ਜੋ ਆਪਾ select ਕੀਤਾ ਉਸਤੇ ਆਪਣੀ machine boot ਹੋ ਜਾਉਗੀ।
+
+*Now systemd reexecutes as system version after that systemd looks for the default target & these files decide the runlevels/targets  to bootup the machine.
+
+(i) Systemd reads the file linked by 
+
+/etc/systemd/system/default.target
+
+to determine the default system target (runlevel).systemd ਇਸ file ਨਾਲ default target search ਕਰਦੀ। ਜੋ ਵੀ file ਇਸ ਨਾਲ link ਹੋਊਗੀ ਉਹ default runlevels ਹੋਊਗਾ ਜਿਸ ਵਿੱਚ system boot ਹੋਊਗਾ। ਇਸਨੂੰ system use ਕਰਦਾ determine/ਪਤਾ ਕਰਨ ਲਈ ਵੀ default target/runlevel ਕਿਹੜਾ ਹੈ।targets ਕਈ ਸਾਰੇ ਹੈ like single user mode ਵਿੱਚ boot ਕਰਨਾ,with network boot ਕਰਨਾ,GUI boot ਕਰਨਾ,machine reboot ਕਰਨਾ, ਇਹ ਸਾਰੇ ਅੱਡ ਅੱਡ target/runlevels ਹੈ ਤੇ ਇਹਨਾਂ ਲਈ ਅੱਡ ਅੱਡ files ਹੁੰਦੀਆਂ ਤੇ ਕਿਹੜੀ file ਆਪਾ link ਕੀਤੀ ਹੈ ਉਹ default.target ਵਾਲੀ file ਨਾਲ ਪਤਾ ਲੱਗ ਜਾਂਦਾ ਹੈ।[ to see ls -l /etc/systemd/system/default.target ਹੁਣ ਇੱਥੇ link show ਹੋਊਗਾ]
+
+(i) there are total 7targets(runlevel) available in RHEL8 also which can be used to boot up the machine in different modes as per the requirement.
+
+(ii) we can set the desired target (runlevel) in the system as default target to boot up the machine by using this command[ systemctl set-default graphical.target ]
+
+(iii) to see 7 default target use [ ls -l /lib/systemd/system/runlevel*target]
+
+ਜਿਹੜਾ ਵੀ ਆਪਣਾ default target set ਹੋਊਗਾ ਉਸ ਵਿੱਚ ਆਪਣੀ machine boot/start ਹੋਊਗੀ। ਉਸਤੋ ਬਾਅਦ systemd process ਇਹ ਬਾਕੀ ਸਾਰੀ services ਨੂੰ start ਕਰੂਗੀ ਤੇ ਜਿੰਨੇ ਵੀ ਦੂਜੇ OS components ਹੈ ਉਹਨਾਂ ਨੂੰ memory ਵਿੱਚ load ਕਰ ਦੇਉਗੀ ਤਾਂ ਜ਼ੋ we can use OS।
+
+⚫ Q). chicken egg problem?
+
+Ans). chicken egg problem linux ਦੀ booting process ਵਿੱਚ ਹੀ ਵੱਡਾ challenge ਹੈ। ਹੁੰਦਾ ਕਿ ਹੈ in this problem, ਆਪਣਾ kernel ਹੈ /boot ਵਿੱਚ ਤੇ ਓਹ /boot partition starting ਵਿੱਚ initialise ਨਹੀ ਹੁੰਦਾ।why bcoz to initilization of hardware we need modules & drivers ਤੇ ਉਹ (driver/ module) are in HardDisk & harddisk initilise ਹੋਈ ਨਹੀ, kernel ਵੀ HardDisk ਵਿੱਚ ਹੈ। HardDisk initialise ਨਹੀ ਹੋਈ ਤਾਂ ਕਿੱਥੋਂ ਉਹ ਸਾਰੀਆਂ ਚੀਜਾਂ ਕਿੱਥੋਂ load ਹੋਣਗੀਆਂ ਜਿਹੜੀਆਂ ਜ਼ਰੂਰੀ ਹੈ(like- initramfs,kernel ਦੀ img ਕਿੱਥੋਂ load ਹੋਊਗੀ) ਜਦੋ HardDisk ਦਾ system ਨੂੰ ਪਤਾ ਹੀ ਨਹੀਂ ਹੈ। ਹੁੰਦਾ ਕਿ ਹੈ ਜੋ MBR ਹੈ ਉਸਨੂੰ ਪਤਾ GRUB ਕਿੱਥੇ ਹੈ।GRUB ਦੀ information code ਵਾਲੇ 440bytes ਦੇ area ਹੈ MBR ਦਾ ਉਸਨੂੰ ਪਤਾ ਹੁੰਦਾ GRUB2 ਕਿੱਥੇ ਹੈ।ਓਥੋਂ ਉਹ GRUB ਨੂੰ access ਕਰ ਲੈਂਦਾਂ ਤੇ ਫਿਰ ਉਸਦੀ help ਤੋਂ initramfs ਨੂੰ access ਕਰਦਾ ਫਿਰ modules & drivers load ਹੁੰਦੇ। chicken egg problem ਹੀ ਇਹ ਹੈ ਵੀ harddisk initilise ਹੋਈ ਨਹੀ ਤੇ ਸਾਰਾ ਜੋ booting files ਦਾ important data ਹੈ ਉਹ 
+
+booting files ਅੰਦਰ ਹੈ ਤਾਂ ਫਿਰ ਓਹ load ਕਿਵੇਂ ਹੋਉਗੀ। ਇਸਦਾ solution ਇਹ ਹੈ ਵੀ MBR ਹੈ ਉਹ GRUB ਨੂੰ point ਕਰ ਦਿੰਦਾਂ।
+
+⚫ Q). Difference b/w primary & secondary bootloader?
+
+Ans). primary bootloader ਉਹ bootloader ਹੈ ਜੋ point ਕਰ ਰਿਹਾ GRUB2 ਨੂੰ ਮਤਲਬ ਉਹ code ਜੋ 440 bytes ਵਿੱਚ reserved ਹੈ in MBR।main bootloader ਹੈ GRUB2 ਜਿਸਦੀ help ਨਾਲ kernel ਦੀ image vmlinuz ਤੇ initramfs extract ਹੋ ਕੇ load ਹੋ ਜਾਂਦਾ in RAM.
+
+___________________________________
