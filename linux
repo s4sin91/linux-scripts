@@ -1,0 +1,711 @@
+ssh -oHostKeyAlgorithms=+ssh-dss
+
+_________
+
+important_commands
+
+tail -f file# see file live changes
+
+___________________________________
+
+#standard input output
+
+find /etc -name passwd 2> error.txt> output.txt #save output n output.txt and error in error.txt
+
+find /etc -name passwd &> /tmp/both.txt #save both output and error
+
+find /etc -name passwd > /tmp/output.txt 2> /dev/null #save output in tmp/output.txt and error in /dev/null where it delete autonatically
+
+___________________________________
+
+#tee command example
+
+cat data.txt | head -n 6 | tee first.txt | tail
+
+cat data.txt | head -n 6 | tee first.txt | tail
+
+cat data.txt | head -n 6 | tee first.txt | tail
+
+#group management command
+
+chage
+
+___________________________________
+
+############### sed command
+
+#use -i option to change in real file otherwise eh only
+
+#show kru but dont change file when it show
+
+#-n is important in print operation,
+
+# bcoz it represent line numericl value
+
+#__________________________
+
+sed 's/root/boot/' passwd
+
+#here it change only first root to boot
+
+sed 's/root/boot/g' passwd
+
+#here it change root to boot no matter how many time root
+
+#come in passwd file in each line with g option
+
+sed '2,4s/ROOT/boot/i' passwd
+
+#ignore case sensitive with i option,
+
+#idk root is in caps or not
+
+sed -n '1p;3p' lines
+
+#print 1 & 3no of line
+
+sed -n '1,3p' lines
+
+#print 1 to 3 lines -n is important
+
+sed '1p;3,7p;$p' -n lines
+
+#print specific lines
+
+sed -n '3!p' lines
+
+#print not 3no line but other
+
+sed '4i ****' lines
+
+#line to pehla likhna use i option
+
+sed '4a ****' lines
+
+#line to baad likhna use a option
+
+sed '3!d' lines
+
+#delete not 3rd no lime but other
+
+sed '3d' passwd
+
+#delete line with d option
+
+sed 's/root/boot/2' passwd
+
+#only change root of 2nd number to boot
+
+sed '2s/root/boot/' passwd
+
+#it change root to boot in 2nd line
+
+sed '2,4s/root/boot/' passwd
+
+#in range of 2 to 4 line change
+
+sed '27s/^#/U/' passwd
+
+sed '27s/^#/ /' passwd
+
+sed '27s/^#//' passwd
+
+#comment uncomment with sed
+
+___________________________________
+
+clean.sh
+
+rm run.sh
+
+rm test.sh
+
+cat /root/shell-scripts/working/backup/template.txt >> /root/shell-scripts/run.sh
+
+cat /root/shell-scripts/working/backup/template.txt >> /root/shell-scripts/test.sh
+
+chmod u+x run.sh
+
+chmod u+x test.sh
+
+-----file
+
+template.txt
+
+#!/bin/bash
+
+___________________________________
+
+run.sh
+
+#!/bin/bash
+
+fileLoc=/dev
+
+#chown /home/singh/file01.txt singh
+
+if [ -r $fileLoc ]
+
+then
+
+echo "You are user: $USER, and you have read access to file:$fileLoc"
+
+else
+
+echo "You are user: $USER, and you dont have read access to file:$fileLoc"
+
+fi
+
+___________________________________
+
+chapter12
+
+#!/bin/bash
+
+#############################################
+
+# Chapter 12
+
+#-d is used to check is it directory or not
+
+#-e is used to check object exists or not
+
+root@localhost:~/shell-scripts# cat chapter12.sh
+
+#!/bin/bash
+
+#############################################
+
+# Chapter 12
+
+#-d is used to check is it directory or not
+
+#-e is used to check object exists or not
+
+#-f is used to check object is file or not
+
+#
+
+#############################################
+
+echo "Checking if directiry or not."
+
+myDirLoc=/root/shell-scripts
+
+myHomeLoc=/home/singh
+
+myFindFile=/myHistory.txt
+
+myRes=/1res
+
+#touch /home/singh/$myFindFile
+
+if [ -d $myDirLoc ]
+
+then
+
+        echo "Directory: $myDirLoc exists on system..."
+
+else
+
+        echo "Directory: $myDirLoc doesnt exists in system, sorry..."
+
+fi
+
+echo "Checking  file or dir exists...."
+
+if [ -d $myHomeLoc ]
+
+then
+
+        echo "HomeDir: $myHomeLoc exists in system..."
+
+        echo "Now going into it and finding file: $myFindFile"
+
+if [ -e $myHomeLoc$myFindFile ]
+
+then
+
+        echo "File: $myFindFile exists in $myHomeLoc$myFindFile"
+
+else
+
+        echo "File: $myFindFile doesn't exists in system, SORYY..."
+
+fi
+
+else
+
+        echo "HomeDir: $myHomeLoc doesnt exists on system, sorry..."
+
+fi
+
+if [ -d $myHomeLoc$myRes ]
+
+then
+
+        echo "1res folder exists in: $myHomeLoc$myRes"
+
+        echo "Now listing this dir:"
+
+        ls $myHomeLoc$myRes
+
+else
+
+        echo "1Res doesnt exists in system"
+
+fi
+
+___________________________________
+
+gu-permission.sh
+
+#!/bin/bash
+
+echo1=$(echo "this is file.txt in /home/linuser2" >> home/linuser2/file.txt)
+
+echo2=$(echo "this is file.txt in /home/winuser2" >> home/winuser2/file.txt)
+
+echo -n $echo1 $echo2
+
+chown home/linuser2/file.txt linuser2
+
+chown home/winuser2/file.txt winuser2
+
+chgrp home/winuser2/file.txt window
+
+chgrp home/linuser2/file.txt linux
+
+___________________________________
+
+colors.sh
+
+##################################
+
+#No color
+
+NC='\033[0m'
+
+#UNDERLINE colors
+
+UPurple='\033[4;35m'      # Purple
+
+URed='\033[4;31m'         # Red
+
+UGreen='\033[4;32m'       # Green
+
+#
+
+BRed='\033[1;31m'         # Red
+
+BGreen='\033[1;32m'       # Green
+
+BBlue='\033[1;34m'        # Blue
+
+BPurple='\033[1;35m'      # Purple
+
+# High Intensity
+
+IBlack='\033[0;90m'       # Black
+
+IRed='\033[0;91m'         # Red
+
+IGreen='\033[0;92m'       # Green
+
+IYellow='\033[0;93m'      # Yellow
+
+IBlue='\033[0;94m'        # Blue
+
+IPurple='\033[0;95m'      # Purple
+
+ICyan='\033[0;96m'        # Cyan
+
+IWhite='\033[0;97m'       # White
+
+echo -e "this is Underline ${UPurple}purple${NC}"
+
+echo -e "this is Bold ${BPurple}purple${NC}"
+
+echo -e "this is HighIntensity ${IPurple}purple${NC}"
+
+##################################
+
+##################################
+
+Black='\033[0;30m'        # Black
+
+Red='\033[0;31m'          # Red
+
+Green='\033[0;32m'        # Green
+
+Yellow='\033[0;33m'       # Yellow
+
+Blue='\033[0;34m'         # Blue
+
+Purple='\033[0;35m'       # Purple
+
+Cyan='\033[0;36m'         # Cyan
+
+White='\033[0;37m'        # White
+
+#NC='\033[0m'             # Default
+
+BRed='\033[1;31m'
+
+IRed='\033[0;91m'
+
+#############
+
+On_Red='\033[41m'         # Red
+
+On_Green='\033[42m'       # Green
+
+On_Yellow='\033[43m'      # Yellow
+
+On_Blue='\033[44m'        # Blue
+
+On_Purple='\033[45m'      # Purple
+
+On_Cyan='\033[46m'        # Cyan
+
+On_White='\033[47m'
+
+##############
+
+UPurple='\033[4;35m'
+
+printf "this is: ${Red}red"
+
+printf "\n${NC}this is: ${Purple}purple"
+
+printf "\n${NC}this is: ${Green}green"
+
+printf "${NC}"
+
+echo -e "\nthis is: ${Blue}blue ${NC}"
+
+echo -e "this is bold:${BRed} red"
+
+echo -e "this is:${Cyan} cyan${NC}"
+
+echo -e "this is:${White} white ${NC}"
+
+echo -e "this is:${Yellow} yellow${NC}"
+
+echo -e "\nthis is highintense: ${IRed}red${NC}"
+
+echo -e "\nthis is bg: ${On_Red}red${NC}"
+
+echo -e "\nthis is bg: ${On_Green}green${NC}"
+
+echo -e "\nthis is bg: ${On_Yellow}yellow${NC}"
+
+echo -e "\nthis is bg: ${On_Blue}blue${NC}"
+
+echo -e "\nthis is bg: ${On_Purple}purple${NC}"
+
+echo -e "\nthis is bg: ${On_Cyan}cyan${NC}"
+
+echo -e "\nthis is bg: ${On_White}white${NC}"
+
+echo -e "this is underline: ${UPurple}text${NC}"
+
+echo -e "${NC}"
+
+___________________________________
+
+bash-book-ex.sh
+
+#!/bin/bash
+
+NC='\033[0m'
+
+#
+
+BRed='\033[1;31m'         # Red
+
+BGreen='\033[1;32m'       # Green
+
+BBlue='\033[1;34m'        # Blue
+
+BPurple='\033[1;35m'      # Purple                              # High Intensity
+
+IBlack='\033[0;90m'       # Black
+
+IRed='\033[0;91m'         # Red
+
+IGreen='\033[0;92m'       # Green
+
+IYellow='\033[0;93m'      # Yellow
+
+IBlue='\033[0;94m'        # Blue
+
+IPurple='\033[0;95m'      # Purple
+
+ICyan='\033[0;96m'        # Cyan
+
+IWhite='\033[0;97m'       # White
+
+##################################                              ##Diffrent ways in shell script ##
+
+##################################
+
+echo -e "\t${BGreen}Ways to ${BRed}run ${BGreen}commands..${NC}"
+
+echo -e "${ICyan}[Way 1]: ${NC}to run [ls] command!..."
+
+mylsr=$(ls)
+
+echo $mylsr
+
+mylsr2=`ls`
+
+echo -e "way 2 to run [ls] command!..."
+
+echo $mylsr2
+
+echo "*"
+
+echo -e "${ICyan}[Input redirection]: ${NC} [<]command!..."
+
+echo -e "command < input file"
+
+cat /etc/passwd >> sh-trash/mpswd
+
+wc < sh-trash/mpswd
+
+echo -e "${ICyan}[]: ${NC} [<<] inline input redirection!.."
+
+echo -e "checking file owned by: $USER"
+
+if [ -O /etc/passwd ]
+
+then
+
+echo "you have access"
+
+else
+
+echo "you dont have accees"
+
+fi
+
+echo -e "${ICyan} [--]: ${NC}"
+
+___________________________________
+
+checkIsThisUser.sh
+
+#!/bin/bash
+
+user=root
+
+if [ $USER == $user ]
+
+then
+
+echo "im $user, and you?"
+
+else
+
+echo "im not $user,  and you.."
+
+fi
+
+echo "bye...."
+
+___________________________________
+
+create-user.sh
+
+     1  #!/bin/bash
+
+     2  ##################################
+
+     3  ##################################
+
+     4  ## Global variables
+
+     5  ##################################
+
+     6  Backup=/tmp/sh-cu-backup
+
+     7  ##################################
+
+     8  NC='\033[0m'              # Default color
+
+     9  #UNDERLINE colors
+
+    10  UPurple='\033[4;35m'      # Purple
+
+    11  URed='\033[4;31m'         # Red
+
+    12  UGreen='\033[4;32m'       # Green
+
+    13  #
+
+  BRed='\033[1;31m'         # Red
+
+  BGreen='\033[1;32m'       # Green
+
+  BBlue='\033[1;34m'        # Blue
+
+ BPurple='\033[1;35m'      # Purple
+
+#High Intensity
+
+IBlack='\033[0;90m'       # Black
+
+IRed='\033[0;91m'         # Red
+
+IGreen='\033[0;92m'       # Green
+
+IYellow='\033[0;93m'      # Yellow
+
+IBlue='\033[0;94m'        # Blue
+
+IPurple='\033[0;95m'      # Purple
+
+ICyan='\033[0;96m'        # Cyan
+
+IWhite='\033[0;97m'       # White
+
+##################################
+
+echo -e "${BGreen}"
+
+echo -e "\t****************************"
+
+echo -e "\t| ${NC}${BGreen}Author:${NC}admin@example.com${BGreen} |"
+
+echo -e "\t****************************${NC}"
+
+echo -e "version 0.3.8"
+
+echo -e "${ICyan}[`date +%R:%S`],${BRed}Trying: ${NC}Creating users & groups, and basic configurations!...${NC}"
+
+##################################
+
+rm -r /home/winuser1 /home/winuser2 2>/dev/null
+
+rm -r /home/linuser1 /home/linuser2 2>/dev/null
+
+userdel winuser2 2>/dev/null
+
+userdel winuser1 2>/dev/null
+
+uwerdel linuser2 2>/dev/null
+
+userdel linuser1 2>/dev/null
+
+groupdel window 2> /dev/null
+
+groupdel linux 2> /dev/null
+
+##################################
+
+mkdir /home/winuser1 /home/winuser2 2>/dev/null
+
+mkdir /home/linuser1 /home/linuser2 2>/dev/null
+
+useradd winuser1 2>/dev/null
+
+useradd winuser2 2>/dev/null
+
+useradd linuser1 2>/dev/null
+
+useradd linuser2 2>/dev/null
+
+groupadd window 2>/dev/null
+
+groupadd linux 2>/dev/null
+
+usermod -G window winuser1 2>/dev/null
+
+usermod -G window winuser2 2>/dev/null
+
+usermod -G linux linuser1 2>/dev/null
+
+usermod -G linux linuser2 2>/dev/null
+
+echo1=$(echo "this is file.txt in /home/limuser2" >> /home/linuser2/file.txt)
+
+echo  -e "$echo1"
+
+sleep 2
+
+echo -e "${ICyan}[`date +%R:%S`],${BPurple}SUCCESS: ${NC}Created ${BGreen}Users${NC} & ${BGreen}Window${NC} group.${NC}"
+
+sleep 2
+
+echo -e "${ICyan}[`date +%R:%S`],${BPurple}SUCCESS: ${NC}Created ${BGreen}Users${NC} & ${BGreen}Linux${NC} group.${NC}"
+
+echo -e "$ICyan[`date +%R`] ${IGreen}##SUCCESS: ${NC}Created ${BGreen}Users${NC} & ${BGreen}Linux${NC} group.${NC}"
+
+##################################
+
+echo -e "\n${BRed}*********************************${NC}"
+
+sleep 1.1
+
+cmd1=$(tail -n 4 /etc/passwd)
+
+cmd2=$(tail -n 4 /etc/group)
+
+echo -e "${ICyan}[`date +%R:%S`]${NC}, Contents of ${UPurple}/etc/passwd ${NC}are as follow:\n${ICyan}$cmd1 ${NC}"
+
+sleep 1.1
+
+echo -e "\n${BRed}*********************************${NC}"
+
+echo -e "${ICyan}[`date +%R:%S`]${NC}, Contents of ${UPurple}/etc/group ${NC}are as follow:\n${ICyan}$cmd2 ${NC}"
+
+###################################
+
+###################################
+
+## Create files in user dir
+
+###################################
+
+#echo1=$(echo "this is file.txt in /home/linuser2" >> /home/linuser2/file.txt 2>/dev/null)
+
+#echo2=$(echo "this is file.txt in /home/winuser2" >> /home/winuser2/file.txt 2>/dev/null)
+
+#echo -n $echo1 $echo2
+
+#chown /home/linuser2/file.txt linuser2 2>/dev/null
+
+#chown /home/winuser2/file.txt winuser2 2>/dev/null
+
+#chgrp /home/winuser2/file.txt window 2>/dev/null
+
+#chgrp /home/linuser2/file.txt linux 2>/dev/null
+
+rm $Backup -r
+
+mkdir $Backup
+
+###################################
+
+###################################
+
+## Backup files: /tmp/sh-cu-backup
+
+###################################
+
+cp /etc/passwd $Backup/passwdd
+
+cp /etc/group $Backup/group
+
+cp /etc/shadow $Backup/shadow
+
+cp /etc/gshadow $Backup/gshadow
+
+cp /etc/sudoers $Backup/shadoers
+
+___________________________________
+
+___________________________________
+
+___________________________________
