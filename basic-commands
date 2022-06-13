@@ -1,0 +1,235 @@
+___________________________________
+
+___________________________________
+
+cat: it is used to createsingle or multiple file, view the content of file or multiple files, and redirect contents of the file to a terminal or file.more in special sign page.
+
+___________________________________
+
+chown: change user owner 
+
+chown userName file/folder
+
+chown userName:groupName file/folder
+
+___________________________________
+
+chgrp: change group owner
+
+___________________________________
+
+date:
+
+* date +%a
+
+*date +%A
+
+*date +%b
+
+*date +%B
+
+*date +%r
+
+*date +%R
+
+*date +%x
+
+*date +%X
+
+___________________________________
+
+echo: ਇਹ ਕਿਸੇ ਵੀ text ਜਾਂ variable ਨੂੰ print ਕਰੂਗਾ[ echo$USER ਇਹ predefined variable ਹੈ]।
+
+___________________________________
+
+file: linux does not require file name by extensions to classify files by type.the file command scans the beginning of a file contents and display what type it is.
+
+for linux everything is file(directory, terminal ਵੀ ਇੱਕ file ਹੈ)
+
+we can check it by another command-
+
+getfacl: to check file
+
+file types in linux-
+
+*Regular file(-)
+
+*Directory file(d)
+
+*Block file(b)
+
+*Link file(l)
+
+*Character file (c)//tty is (c) file
+
+*Special file(s,p)
+
+___________________________________
+
+head:ਆਪਾ specify ਕਰ ਸਕਦੇ ਵੀ ਕਿੰਨੀਆਂ no. of lines ਆਪਾ ਦੇਖਣੀਆਂ by default ਇਹ first 10 lines show ਕਰਦੀ।
+
+hostname: hostname comnand ਦਾ ਜੋ output ਅਉਗਾ ਉਸ ਵਿੱਚ hostname.local domain। ਏਹ ਦੋਵੇਂ ਅੱਡ ਅੱਡ ਹੁੰਦੇ (hostname & localdomain)।ਹਰ server ਦਾ hostname ਹੁੰਦਾ ਤੇ ਹਰ server ਦਾ domain name ਹੁੰਦਾ ਦੋਵਾਂ ਦੇ combine name ਨੂੰ [hostname+domain name] FQDN fully qualified domain name ਕਹਿੰਦੇ। DNS FQDN ਨੂੰ ip ਵਿੱਚ change ਕਰਦਾ।
+
+___________________________________
+
+less: it is used to read, view content.it show content from beginning of file that's why it is best for reading file.
+
+we can use up&down keys & we can exit it with [q]
+
+___________________________________
+
+more: it is used to read,view content,ਇਸ ਵਿੱਚ [%] ਦੱਸ ਦਿੰਦਾ ਵੀ ਕਿੰਨੀ file read krli ਤੇ we can not up&down key
+
+we can go down with enter & it automatically exit.
+
+__________________________________
+
+touch: used to create blank/empty file,change timestamp
+
+___________________________________
+
+tail: ਆਪਾ specify ਕਰ ਸਕਦੇ ਵੀ ਕਿੰਨੀਆਂ no. of lines ਆਪਾ ਦੇਖਣੀਆਂ ਬੀ default ਇਹ last 10 lines show ਕਰਦੀ
+
+___________________________________
+
+passwd: root user can change for any regular user password
+
+___________________________________
+
+sed: ਜਦੋ range ਦੀ ਗੱਲ ਹੁੰਦੀ ਤਾਂ sed is best used for
+
+(i)print line number
+
+(ii) find and replace
+
+(iii) delete(d to delete )!dnot delete
+
+(iv) before the line number we can insert anything[sed '5i ਇਹ ਪਹਿਲਾ ਲਿਖਿਆ ਜਾਊਗਾ infile' filename] 
+
+(v) after the line number we can append anything [sed '5a ਇਹ line ਤੋ ਬਾਦ ਲਿਖਿਆ ਜਾਊਗਾ' filename]
+
+----------------------------------------------------------
+
+Syntax-[sed 'action' filename ] or [command | sed 'action']
+
+#print first & last line
+
+#TIP use cat -n filename for printing line.
+
+(i) example print
+
+-n is used for printing ਤਾਂ ਇਹ numeric value ਨੂੰ point ਕਰ ਸਕੇ।
+
+$p is for last.
+
+1p is for first line.
+
+; is used for and[sed -n '1p;5p' file]
+
+, is used for printing line 1 to n of line[ sed -n '1p,5p' filename]
+
+(ii)ਇਕ option ਹੁੰਦਾ [-I] if we don't it ਤਾਂ ਸਿਰਫ਼ screen ਤੇ show ਕਰੂ changes but if we use ਤਾਂ ਉਹ file ਤੇ ਵੀ change ਕਰੂ
+
+[sed 's/word/replace/g' filename]
+
+lineNum: to change in specific line
+
+s: substitute ਕਰੋ।
+
+/searchAny: ਇਸਨੂੰ sarch ਕਰਨਾ
+
+/replacingWord: ਇਸਨੂੰ replace ਕਰਨਾ
+
+/g: ਇਹ important ਹੈ ਬਿਨਾ ਇਸਦੇ ਇਹ only one time replace ਕਰੂ in line if we use this ਤਾਂ ਇਹ ਹਰ ਵਾਰ replacingWord ਨੂੰ replace ਕਰੂਗਾ
+
+i: ignore case sensitive
+
+/num(ast Wale ਵਿੱਚ): ਉਸ number ਵਾਲਾ change ਹੋਊਗਾ & if g ਲਗਾ ਦੇਵਾਗੇ ਤਾਂ ਉਸ number ਤੋ ਬਾਦ ਸਾਰੇ change ਹੋ ਜਾਣਗੇ
+
+: ਇਸਦਾ use ਹੁੰਦਾ mutiple ਕੰਮ ਲਈ 'replace comd1: replace comd2'। or use -e [ sed -e 'cmd1' -e 'cmd2]
+
+___________________________________
+
+cut: [ cut option filename ]or [ cmdname | cut option ]
+
+-c= cut by character ਇਸਨੂੰ deliemeter ਦੀ ਲੋੜ ਨਹੀਂ bcoz it cut every rows character {directly}
+
+,:1,3 cut 1st & 3rd character
+
+-: 1-3 cut 1 to 3(range)
+
+-d= define the delimeter symbol.it can be anytime(, " MKeyword space :)note -d & -f work together
+
+-f= cut by field we can't use this symbol without defining delimeter
+
+--complement: skip specific 
+
+awk: ਇਹ cut ਦਾ ਹੀ advance version ਹੈ for ex cut ਦੀ limitations ਹੈ ਉਹ multiple spaces ਨੂੰ as a delimeter ਨਹੀ ਲੈ ਸੱਕਦਾ। 
+
+'{print $1,$4}' in awk space ਨੂੰ ਇਹ automatically delimeter ਲੈ ਲੈਂਦਾ।
+
+-F: is is used for delimeter
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+___________________________________
+
+whatis: ਸਭਤੋਂ short info ਦੇਖਣੀ command ਬਾਰੇ ਤਾਂ whatis ਦਾ use ਕਰੋ।
+
+___________________________________
+
+w,who,whoami
+
+w: show who is logged on and what they are doing. display info about the user currently on the machine, and their process. ਇਹ ਦੱਸਦੂ ਕਿਹੜੇ user ਨੇ ਕਿੱਥੋਂ login ਕੀਤਾ।
+
+who: ਇਹ ਜਿਸ particular user ਤੋ physically login ਕੀਤਾ ਉਸ ਬਾਰੇ ਦੱਸੇਗਾ।it tell online physical console not virtual console, means we get tty info with who.
+
+whoami: ਜਿਸ user ਨੇ login ਕੀਤਾ ਉਸ ਬਾਰੇ ਦੱਸਦਾ it show effective userid।
+
+___________________________________
+
+🔴signs in linux
+
+|: it combines two or more commands ਪਰ ਇੱਕ command ਦਾ output ਅਗਲੀ command ਦਾ input ਬਣਜਾਊਗਾ। ਹਰ ਜਗ੍ਹਾ ਆਪਾ pipe ਦਾ use ਨਹੀ ਕਰ ਸਕਦੇ only ਉੱਥੇ ਹੀ use ਕਰਦੇ ਜਿਸ ਦਾ output ਅਗਲੀ command ਵਿੱਚ use ਕਰ ਸਕੀਏ as a input।
+
+*ਜੇ ਆਪਾ ਕਿਸੇ output ਨੂੰ redirect ਕਰ ਦੇਈਏ in file ਤਾਂ ਉਸ time [pipe | ] ਤੋ ਪਹਿਲਾ ਵਾਲੀ command ਦਾ output ਤਾਂ file ਦੇ ਵਿੱਚ save ਹੋ ਜਾਊਗਾ ਤੇ ਅਗਲੀ command ਲਈ ਕੋਈ input ਨਹੀਂ ਹੋਊਗਾ ਇਸ ਤੋਂ ਬਚਣ ਲਈ [ | tee] ਦਾ use ਹੁੰਦਾ। ਇਹ output ਦੀ 2 copy ਬਣਾ ਦੇਊਗਾ। ਇੱਕ ouput ਨੂੰ file ਦੇ ਵਿੱਚ redirect ਕਰਦੂ ਤੇ ਦੂਜੇ ਨੂੰ ਅੱਗੇ [example in important_commands.txt ] ਪਰ ਜੇ we use it for other purpose it won't pass it.
+
+| tee: alreday discussed.
+
+;: To type more than one command on single line,can use semicolon and work as command separator.it is a member of a class character called metacharacters that have special meaning of bash. | ਵਿੱਚ output ਤੇ depend ਕਰਦੀ next comnand but [;] ਵਿੱਚ ਨਹੀ ਕਰਦੀ।
+
+>:redirection ਲਈ use ਹੁੰਦਾ, ਤੇ ਇਹ ਕੈਟ ਨਾਲ ਇਕੱਲਾ use ਕਰਨ ਨਾਲ file overwrite ਕਰ ਦਿੰਦਾਂ। >> append ਲਈ use ਹੁੰਦਾ।
+
+!: ਇਸ ਨਾਲ ਆਪਾ history ਦੇ ਵਿੱਚ command number ਲਾਕੇ ਬਿਨਾ ਸਾਰੀ type ਕੀਤੇ ਲਿੱਖ ਸੱਕਦੇ (!13) if !cat ਤਾਂ latest ਵਾਲਾ cat run ਕਰੂਗਾ।
+
+^:(this sign represent beginning of line) ਇਹ ਜਿਵੇਂ ਆਪਾ [grep ^root] ਕੀਤਾ [cat /etc/passwd ਨੂੰ] ਤਾਂ ਇਹ sign root ਤੋਂ start ਕਰੂਗਾ show ਕਰਨਾ। do practical
+
+$: same as ^ but end of line
+
+\: ਜਦੋ space ਨਾ ਹੋਵੇ terminal ਤੇ ਉਦੋਂ new line ਚ command show ਕਰ ਦਿੰਦਾਂ।
+
+. & ..: [. ਦਾ ਮਤਲਬ present working directory, .. ਦਾ ਮਤਲਬ parent directory] ex- /home/singh/test ਇੱਥੇ test ਦਾ parent singh, singh ਦਾ parent home, home ਦਾ parent /, /ਦਾ child home, ਤੇ ਐਵੇਂ ਐਵੇਂ ਅੱਗੇ ਵੀ singh ਦਾ child test। Child ਨੂੰ sub directory ਵੀ ਆਖਦੇ। in windows ਦੀ language ਇਸਨੂੰ exit label{one by one}। .file ਇਹ hidden ਹੁੰਦੀਆਂ। cd ਦੇ sense ਵਿੱਚ . ਦਾ ਕੁੱਝ ਜ਼ਿਆਦਾ ਮਤਲਬ ਨਹੀਂ ਸੀ ਪਰ, cp ਦੇ sense ਚ ਬਹੁਤ ਮਤਲਬ ਹੈ . denotes destination, for ex ਜਦੋ ਆਪਾ ਕੋਈ file copy ਕਰਦੇ [ cp /etc/passwd /home/singh/ ] ਐਨੇ ਲੰਬੇ command ਦੀ ਥਾਂ we can use .[ cp /etc/passwd .] bcoz it represent present working directory
+
+cd -: ਇਹ for ex ਮੈਂ home/singh/test1 ਤੇ ਕੰਮ ਕਰ ਰਿਹਾ ਤੇ ਮੈ cd /home/singh/d1  ਤੇ ਆਗਿਆ ਪਰ ਵਾਰ-ਵਾਰ ਆਏ ਨਾ ਕਰਨ ਦੀ ਥਾਂ ਮੈ cd - ਦਾ use ਕਰ ਸਕਦਾ 2 ਥਾਵਾਂ ਤੇ ਜਾਣ ਲਈ।how bcoz cd - denotes previous location
+
+___________________________________
