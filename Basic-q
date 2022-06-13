@@ -1,0 +1,194 @@
+What is BASH?
+
+full form: Bourne Again Shell
+
+ਇਹ ਇੱਕ program ਹੈ, ਆਪਾ ਨੂੰ ਕੋਈ ਵੀ task execute ਕਰਨ ਲਈ ਕੋਈ (base program, System software ਚਾਹੀਦਾ) ਜਿਸ ਉੱਪਰ command type ਕਰ ਸਕੀਏ ਤੇ ਤੇ ਇਹ kernal ਨਾਲ ਕੰਮ ਕਰਦਾ(when we type command it informs kernel) task execute ਕਰਨ ਲਈ।command ਜਿਸ program ਨਾਲ execute ਹੋ ਰਹੀ ਹੈ ਉਹ bash ਹੈ। ਜੇ ਉਹ command exist ਕਰਦੀ ਤਾਂ ਉਹ run ਹੋਜੂ ਨਹੀ ਤਾਂ ਨਹੀ ਹੋਣੀ ਤੇ shell ਦੱਸ ਦੇਊਗਾ command not found। ਇਸਨੂੰ (bash) command line interpreter ਵੀ ਕਹਿੰਦੇ।
+
+the default shell of linux Os - /bin/bash
+
+Bash is the improved version of sh(Bourne shell)
+
+Regular User start the shell prompt, end with $sign
+
+For the root User (Super User),shell prompt ends with #sign
+
+Bash enables the user to execute the command 
+
+Bash is similar to cmd.exe, used in MS Windows
+
+The bash shell provides a scripting language that can support automation of tasks.
+
+Shell basics
+
+Command entered in prompt have three basic component
+
+1)command, 2) option, 3) argument
+
+Example: [(1)useradd] [(2)-u 2001] [3) user01]
+
+which:-->ਕੋਈ ਵੀ command ਦਾ ਆਪਾ location ਦੇਖ ਸਕਦੇ ਵੀ ਉਹ ਕਿੱਥੇ stored ਹੋਈ ਹੈ।used to locate the executable files or location of a program from the file system. It displays the path where the specified file or command is stored.
+
+terminal?
+
+ਕੋਈ ਵੀ command type ਕਰਨ ਲਈ ਆਪਾ ਨੂੰ ਕੋਈ interface ਚਾਹੀਦਾ ਤੇ ਇਸਨੂੰ terminal ਕਹਿੰਦੇ।
+
+terminal 2type ਦੇ ਹੁੰਦੇ tts and pts.(1)physical console(tts- teletype).  (2) virtual console (pts- Pseudo terminal slave) 
+
+in linux we can open 6 physical terminal from TTY1-TTY6.why & what usage, suppose ਮੈਂ ਇੱਕ terminal ਤੇ ਕੰਮ ਕਰ ਰਿਹਾ ਸੀ ਉਹ terminal busy ਹੋ ਗਿਆ ਕਿਉਕਿ ਉਸ ਤੇ ਕੋਈ ਵੀ long time run operation ਚੱਲ ਰਿਹਾ ਸੀ।there are 2 types of interface GUI & CUI (CLI)
+
+in CUI,there are 6 terminal like TTY1-TTY6
+
+In GUI, open multiple virtual terminal like PTS1,PTS2...and so on
+
+ਜੋ terminal ਆਪਾ open ਕਰਦੇ ਉਹ virtual console terminal ਹੁੰਦਾ why Bcoz ਹੁੰਦਾ ਇਹ Graphical console ਦੇ ਅੰਦਰ virtual console ਹੈ ਇਸ ਲਈ it is virtual we can check it by [tty] command both in physical & virtual terminal. physical ਅੰਦਰ virtual console ਹੁੰਦਾ
+
+linux ਇੱਕ multi-user OS ਹੈ, ਇਸਦੇ ਵਿੱਚ ਆਪਾ ਬਿਨਾ logout kite same user ਨੂੰ multiple accounts open&run ਕਰ ਸਕਦੇ for more info GOTO 30:00 on RHCS craw security lec2. ਮਤਲਬ ਆਪਾ TTY6 open ਕੀਤਾ ਤੇ ਇਸਦੇ ਵਿੱਚ ਆਪਾ, ਕੋਈ user ਜੇ TTY2 ਤੇ ਕੰਮ ਕਰ ਰਿਹਾ c ਤੇ ਆਪਾ TTY6 ਤੇ ਉਸਨੂੰ login(when we login ਇਹ ਉਸ user ਦੀ last login ਵੀ show ਕਰੂ screen ਤੇ) ਕਰਲਿਆ ਤਾਂ ਉਸਨੂੰ TTY2 ਤੇ logout ਕਰਨ ਦੀ ਲੋੜ ਨਹੀ we can check which user working on which console by [w] comnand
+
+🔴logout,exit,ctrl+d?
+
+login ਕਰਨ ਦਾ ਮਤਲਬ ਆਪਾ ਨੂੰ shell ਮਿੱਲ ਜਾਵੇ [-]ਇਸ not compulsory, ਪਰ ਇਸ ਨਾਲ ਆਪਾ ਨੂੰ ਆਵਦਾ seprate shell ਨਹੀ ਮਿਲਦਾ। if we can't use [- we use su username] we login to a already login user but not get seprate shell. 
+
+we can't logout until we login into particular shell every user has its particular shell in which he/she login.logout ਆਪਾ shell ਤੋ ਕਰਦੇ but we can exit in shell anywhere without login Bcoz exit mean exit.To login in particular user shell use [su - username] not with [su username (with this we can't ligin)]. ਜਿੰਨਾ time we doesnt login with su - username ਉਦੋਂ ਤੱਕ we can't goto this username home directory ਤੇ bcoz ਆਪਾ - ਤੋ ਬਿਨਾ login ਨਹੀ ਹੁੰਦੇ ਇਸ ਲਈ ਆਪਾ - ਤੋਂ ਪਹਿਲਾ ਜਿਹੜੇ user ਤੋ login ਸੀ ਉਸਦੀ home directory ਵਿੱਚ ਹੀ ਰਹਿ ਜਾਂਦੇ।exit ਦਾ ਮਤਲਬ shell exit ਕਰ ਸਕਦੇ ਕਿਉਕਿ ਆਪਾ ਕਿਸੇ ਦੂਜੇ user ਨੂੰ logout ਨਹੀ ਕਰ ਸਕਦੇ। ਜਿੰਨਾਂ time we don't physically login a user ਉਦੋਂ ਤੱਕ ਉਸ new user ਦੀ profile ਨਹੀ ਬਣਦੀ।
+
+Desktop, Download etc ਨਹੀਂ ਬਣਦੇ।
+
+___________________________________
+
+🔴Softlink vs Hardlink?
+
+🔵Softlink
+
+windows ਵਿੱਚ ਆਪਾ shortcut ਬਣੋਨੇ ਕਿਸੇ program ਦਾ ਉਸਨੂੰ shortcut(link) ਕਹਿੰਦੇ।
+
+*The [ln -s] command create a softlink, which is also called a "symbolic link"
+
+*A softlink is not a regular file, but a special type of file that point to an existing file or directory.
+
+*Softlinks have some advantages over hardlinks
+
+*Can link two files on different file systems
+
+*Can point to directory or special file, not just a regular file
+
+*When the original regular file gets deleted ,the soft link still point to the file but the target is gone.
+
+*A softlink pointing to a missing file caled a "dangling soft link"
+
+🔵 Hardlink
+
+{every file is single hardlink}
+
+*Every file starts with a single hard link, from its initial name to the data on the file system.
+
+*Use [ln] command to create a new hardlink(another name) that points to an existing file.
+
+*Create a new hardlink to a file, you create another name that points to that same data.
+
+*The new hardlink acts exactly like the original file name.
+
+*Once created you cannot tell the difference between the new hardlink and the original name of the file.
+
+*It reports is each file's link count, the number of hardlinks the file has.
+
+*The command needs atleast two argument, a ptah to the existing file, and the path to the hardlink that you want to create.
+
+*If you want to find out whether two files are hardlinks of each other, one way is to use the -i option with the ls command to list the file  inonde number.
+
+NOTE: All hardlinks that reference the same file will have the same link count, access permission, user and group ownerships,time stamps and file content.
+
+Each hardlink points to the same data on the storage device.
+
+Even if the original file get deleted, the content of the file are still available as long as at least one hardlink exists.
+
+Data is only deleted from storage when the last hard link is deleted.
+
+___________________________________
+
+🔴File system hierarchy
+
+[ls] run ਕਰਦੇ ਚੱਲ ਪੈਂਦੀ command ਤੇ ਇਸਦਾ path ਹੈ [usr/bin/ls] system ਨੂੰ ਪਤਾ ਵੀ [ls] ਕਿੱਥੇ ਹੈ (location)। ਹਰ command ਦਾ environmental path ਹੁੰਦਾ (path ਦਾ ਮਤਲਬ environmental path ਵੀ environmen ਵਿੱਚ run ਕਿਵੇਂ ਕਰਨਾ{environment ਵਿੱਚ ਜੋ ਕੁਝ ਵੀ ਚੱਲ ਰਿਹਾ ਹੈ {program execute ਹੋ ਰਿਹਾ}ਉਹ ਇਸੇ ਦੇ through ਹੀ ਚੱਲਦਾ)।we can check path by [echo $PATH] ਹਰ command system ਏਥੋਂ  run ਕਰਦਾ {ਇਸ command ਦੇ output ਚ ਲਿਖਿਆ ਵੀ system ਕਿੱਥੇ ਕਿੱਥੇ find/search ਕਰੂਗਾ command}।like windows ਵਿੱਚ c:programfiles,system32 same $PATH ਵਿੱਚ path defined ਹੈ ਜੋ predefined ਹੈ।
+
+----------------------------------------------------------
+
+🔵The /usr
+
+installed software,shared libraries, include files(in linux everything is file), and read-only program data.
+
+The subdirectory include:-
+
+*usr/bin:- user commands(normal)
+
+*usr/sbin:- system administration commands(root)
+
+*usr/local: Locally customiszd software{script file, software etc }
+
+----------------------------------------------------------
+
+/etc: have all the configuration files.
+
+----------------------------------------------------------
+
+/var: variable data specific to the system that should persist b/w boots.files that dynamically changes, such as databases,cache directories, log files, printer-spooled documents,and website content may be found here.
+
+----------------------------------------------------------
+
+/run: runtime data for processes started since the last boot.this includes process id files and lock files, among other things.the content of this directory are recreated on reboot. pendrive ਵੀ run ਵਿੱਚ ਹੁੰਦੀ।
+
+----------------------------------------------------------
+
+/tmp: A world-writeable sapce for temporary files,files which have not been accessed,changed, or modified for 10days are deleted from this directory automatically.
+
+another temporary directory exists, /var/tmp, in which files have not been accessed,changed, or modified in more than 30days are deleted from this directory automatically.
+
+----------------------------------------------------------
+
+/boot: files needed in order to start the boot process.
+
+----------------------------------------------------------
+
+/dev: contains special device files that are used by the system to access hardware.
+
+----------------------------------------------------------
+
+___________________________________
+
+🔴 Absolute vs Relative path
+
+ਕਿਸੇ ਵੀ location/directory ਵਿੱਚ ਜਾਣ ਦੇ 2 type ਦੇ path ਹੁੰਦੇ (i) absolute (ii) relative
+
+the path of a file or directory specify it's unique file system location.
+
+🔵(i) absolute: ਜਦੋ ਕੋਈ ਵੀ path (/dir) ਤੋ start ਹੁੰਦਾ ਉਹ absolute ਹੁੰਦਾ।
+
+*it is fully qualified name, specifying the files exact location in the file system hierarchy.
+
+*it begins at the root (/) directory and specifies each subdirectory that must be traversed to reach the specific file.
+
+*a path name with a forward (/) slash at the first character is an absolute path name.
+
+🔵(ii) relative: ਜਦੋ ਕੋਈ ਵੀ path ਬਿਨਾਂ (/dir) ਤੋ current working dir start ਤੋ ਹੁੰਦਾ ਉਹ retive ਹੁੰਦਾ।
+
+*the working directory or current working directory refer to their current location.
+
+*relative path identifies a unique file specifying only the path necessary to reach the file from the working directory.
+
+*a path name anything other than a forward (/) slash as the first character is a relative path name.
+
+___________________________________
+
+🔴creating, viewing and editing text files 🔴
+
+🔵Redirection output to a File or  Program.
+
+A command running from the shell prompt normally reads it's input from keyboard and send its output to its terminal window.(ਇਹ ਸਾਰਾ ਕੁਝ ਆਪਾ use ਕਰਦੇ ਇਹ ਸਭਕੁਝ process ਨਾਲ ਹੁੰਦਾ file descriptor)
+
+*A process uses numbered channels  called file descriptor to get input and send output.
+
+*All proccess start with at least 3 file descriptors.
+
+(i) standard input (channel 0) reads input from the keyboard
+
+(ii) standard output (channel 1) sends normal output the terminal
+
+(iii) standard error (channel 2) sends error messages to the terminal.
+
