@@ -1,0 +1,91 @@
+⚫disk:2types (i) basic:( GPT & MBR) ਇਸ ਵਿੱਚ partitions ਬਣਦੇ
+
+(ii) dynamic: ਇਸ ਵਿੱਚ volumes ਬਣਦੇ।
+
+Simple(1HDD ਚਾਹੀਦੀ)
+
+Spaned(2HDD ਚਾਹੀਦੀ)
+
+Striped(2HDD ਚਾਹੀਦੀ)
+
+Mirror(2HDD ਚਾਹੀਦੀ)
+
+RAID 0,1,5(3HDD ਚਾਹੀਦੀ)
+
+RAID 6,11(4HDD ਚਾਹੀਦੀ)
+
+⚫Partition/drive
+
+⚫
+
+⚫
+
+___________________________________
+
+lsblk: list block devices, block ਮਤਲਬ ਕੋਈ ਵੀ storage device ਨੂੰ block ਕਹਿੰਦੇ। 
+
+command ਦੇ output ਵਿੱਚ ਬਹੁਤ ਕੁਝ ਹੈ like sda ਵਿੱਚ s ਦਾ ਮਤਲਬ SATA or SCSI disk ਹੁੰਦੀ। If disk ide ਹੋਵੇ ਤਾਂ hda। d ਦਾ ਮਤਲਬ disk।a ਦਾ ਮਤਲਬ 1st b ਦਾ 2nd, c ਦਾ 3rd
+
+sr0: ਹੁੰਦੀ dvd
+
+nvme: ssd ਦਾ type ਹੈ,ਇਹ copy Wale lecture ਤੇ ਵੀ ਸੀ। ਇੱਥੇ nvme01 1st, nmvme0n2 2nd etc.
+
+___________________________________
+
+fdisk - l: full information disk ਦੀ ਇਥੋਂ ਪਤਾ ਲੱਗਦਾ, specific ਇੱਕ disk ਦੀ ਆਪਾ fdisk -l /dev/sda ਨਾਲ ਪਤਾ ਕਰ ਸਕਦੇ। ਇਸ command ਨਾਲ ਆਪਾ partitions ਵੀ ਕਰ ਸਕਦੇ but only4, 4 ਤੋ ਵੱਧ primary partition ਨਹੀ ਕਰ ਸਕਦੇ bcoz fdisk command ਇਹ MBR disk ਨੂੰ manage ਕਰਨ ਲਈ use ਕੀਤੀ ਜਾਂਦੀ ਹੈ। GUID(guid=globally unique identifier) partition table [GPT]disk ਲਈ gdisk comnand ਦਾ use ਕਰਦੇ।GPT BIOS ਤੇ ਕੰਮ ਨਹੀ ਕਰਦਾ ਇਸ ਲਈ UEFI ਚਾਹੀਦਾ।MBR is compatable with MBR.
+
+⚫MBR & GPT are partition style
+
+⚫ primary partition ਦਾ ਮਤਲਬ ਉਹ partition ਜਿਸ ਵਿਚ OS ਜਾ data ਰੱਖ ਸਕਦੇ।
+
+ਆਪਾ ਇਸ ਵਿੱਚ in case ਲੋੜ ਪੈਂਦੀ ਹੈ ਤਾਂ in MBR disk 3 primary ਬਣਾਕੇ ਤੇ 1extended partition ਬਣਾਕੇ ਉਸ ਵਿੱਚ extended partition ਵਿਚ further logical partition ਵੀ ਬਣਾ ਸਕਦੇ total 11 how (3-1-11 extended ਦਾ ਜਦੋ ਆਪਾ lsblk run ਕਰਦੇ ਉਸ time 1KB size ਦੱਸਦਾ).bcoz partition size data is stored as 32bit values,disk partitioned with the MBR scheme have a maximum disk and partition size of 2TiB.in GPT we can make 128 primary partition.no logical partition in GPT.
+
+⚫extended partition: it is type of primary partition which can further contain the logical partitions in it. ਇਹ ਇੱਕ ਹਿਸਾਬ ਦੀ boundary ਹੁੰਦੀ।
+
+___________________________________
+
+⚫GPT details: for system running UEFI firmware.GPT is standard for laying out partition table on physical HDD.GPT is part of the UEFI standard and addresses many of the limitations that the old MBRbased schema imposed.a GPT provides a maximum 128 partition.unlike an MBR, which uses 32bits for storing logical block addresses and size information, a GPT allocates 64bits for logical block address.this allows GPT to accomodate partitions and disk upto 8ZiB or 8billion tebibytes.GPT uses a GUID to identify each disk and partition. 
+
+In contrast to an MBR, which has a single point of failure, a GPT offers redundancy of its partition table information.
+
+The primary GPT reside at the head of the disk, while a backup copy, the secondary GPT is housed at the end of the disk.(je MBR curruption ਹੋ ਜਾਵੇਂ OS ਨੇ work ਨਹੀ ਕਰਨਾ, HD ਹੀ work ਨਹੀ ਕਰਨੀ, bcoz booting information is stored in MBR)
+
+A GPT uses a checksum to detect errors and curruptions in the GPT header & partition table
+
+___________________________________
+
+partprobe: is used to make partition in GPT & MBR both
+
+___________________________________
+
+dmesg: ਇਹ kernel ring buffer messages show ਕਰਦੀ ਹੈ। disk booting time ਤੇ detect ਹੁੰਦੀ thats why ਇਸ command ਦੇ ਵਿੱਚ disk related information ਵੀ ਮਿਲਦੀ ਹੈ। by using dmesg | grep sda
+
+___________________________________
+
+lshw: ਸਾਰੀ info Hardware ਦੀ।
+
+___________________________________
+
+lsscsi: SCSI DISK in system info ਤੇ ਇੱਕ file ਹੁੰਦੀ ਇਸ ਵਿਚ ਵੀ SCSI info ਮਿਲਦੀ /proc/scsi/scsi
+
+___________________________________
+
+badblock: use to anti recovery।
+
+dd:it is called disk destroyer. ਇਸ ਨਾਲ file create ਕਰ ਸਕਦੇ specific size ਦੀ,swap file ਵੀ ਬਣਾ ਸਕਦੇ।ਇਹ v format ਅਸਤੇ ਹੀ ਹੈ।ਦੇ if=/dev/zero( ਏਥੇ ਉਹ ਦਾਤਾ generally zero ਲਿੱਖ ਰਹੇ) of=/dev/sda(ਏਥੇ disk ਦਾ ਨਾਮ jo erase ਕਰਨੀ। ਇਹ command disk ਦਾ ਹਰ sector, block ਨੂੰ zero ਤੋ replace ਕਰਦੂ।
+
+___________________________________
+
+cmd in ss: disk add ਕਰਨ ਤੋਂ baad {ਸ਼ਾਇਦ ਕਦੇ-ਕਦੇ }ਉਹ show ਨਹੀ ਹੁੰਦੀ bcoz idealy  system reboot ਕਰਨਾਂ ਪੈਂਦਾ/ਚਾਹੀਦਾ, ਤਾਹਿ ਉਹ show ਹੋਊ bcoz kernel ਨੂੰ ਪਤਾ ਲੱਗ ਜਾਊਗਾ ਵੀ ਕਿਹੜੀ disk add ਹੋਈ ਹੈ ਜਦੋ ਸਾਰੀਆਂ ਚੀਜਾਂ ਦੁਬਾਰਾ load ਹੋਣ ਗੀਆ on boot, without reboot (only nvme diske on the go add ਨਹੀ ਹੁੰਦੀ ਸ਼ਾਇਦ in VM) with [partprobe] by default ਇਹ ਸਭ disk scan/ਕੰਮ ਕਰੂ, but we can specify it [ partprobe /dev/sda]
+
+___________________________________
+
+⚫ create partitions⚫
+
+Why partition: 4TB ਦੀ disk ਵਿੱਚ 1TB ਆਪਣੇ ਇੱਕ ਕੰਮ ਲਈ, ਬਾਕੀ 3TB format ਕਰਕੇ ਕਿਸੇ ਹੋਰ ਕੰਮ ਲਈ। filesystem create ਕਰਨ ਲਈ format ਕਰਨਾਂ ਪੈਂਦਾ ਤੇ format ਦਾ real ਮਤਲਬ ਹੁੰਦਾ ਆਪਾ system ਨੂੰ ਦਸ ਰਹੇ ਵੀ ਆਪਾ ਕਿਹੜਾ filesystem ਉਸ ਉੱਪਰ create ਕਰਨਾ, ਆਪਾ system ਨੂੰ ਦਸਦੇ ਵੀ ਆਪਾ ਕਿਸ ਤਰ੍ਹਾਂ data organised ਕਰਾਗੇ, ਕਿੰਨੀ capacity ਦੀ file ਹੋ ਸਕਦੀ ਉਸ ਅੰਦਰ।
+
+mkfs: ਆਪਾ new partition ਵਿੱਚ data ਰੱਖਣਾ, ਆਪਾ directly data ਰੱਖਣ ਲਈ ਕੋਈ ਵੀ partition ਐਵੇ ਹੀ ਨਹੀਂ use ਨਹੀ ਸਕਦੇ, ਵੀ directly data ਰੱਖਤਾ/ file ਬਣਾਤੀ/ ਇਸਦੇ ਅੰਦਰ ਚਲੇ ਗਏ। ਇਸ ਲਈ ਆਪਾ ਨੂੰ ਕਿਸੇ directory ਨੂੰ assign/mount ਕਰਨਾ ਪਾਊਗਾ ਜੋ ਇਸ ਵਿੱਚ data store ਕਰਾ ਪਾਵੇ ਉਹ ਕਦੋ ਤੱਕ ਨਹੀ ਹੁੰਦਾ ਜਦੋ ਤੱਕ ਆਪਾ filesystem ਨਹੀ ਕਰਦੇ।permanent mount ਕਰਨ ਲਈ /etc/fstab ਵਿੱਚ change ਕਰਨੇ ਪੈਂਦੇ and then update with [mount -a]
+
+df: ਨਾਲ ਪਤਾ ਲੱਗ ਜਾਂਦਾ ਕਿਹੜੀ partition ਨਾਲ ਕਿਹੜੀ directory mount ਹੈ। ਆਪਾ mount ਨਾਲ ਦੂਜੀ directory ਵੀ mount ਕਰ ਸਕਦੇ।
+
+___________________________________
